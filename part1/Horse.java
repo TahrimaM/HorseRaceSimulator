@@ -20,14 +20,13 @@ public class Horse
         this.horseName = horseName;
         this.distance = 0;
         this.horseFallen = false;
-        this.horseConfidence = horseConfidence;
-        if (horseConfidence < 0)
-        {
-            horseConfidence = 0;
+        if (horseConfidence < 0) {
+            this.horseConfidence = 0;
+        } else if (horseConfidence > 1) {
+            this.horseConfidence = 1;
         }
-        else if (horseConfidence > 1)
-        {
-            horseConfidence = 1;
+        else {
+            this.horseConfidence = horseConfidence;
         }
 
     }
