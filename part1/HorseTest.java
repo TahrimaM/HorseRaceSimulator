@@ -1,10 +1,10 @@
 public class HorseTest {
         public static void main(String[] args) {
             // Create a new horse
-            Horse horse = new Horse('♘', "KOKOMO", -0.0001);
+            Horse horse = new Horse('♘', "TAHRIMAS HORSE", 1.0000001);
 
             // Print initial state
-            System.out.println("Name: " + horse.getName()); // Should be PIPPI LONGSTOCKING
+            System.out.println("Name: " + horse.getName()); // Should be TAHRIMAS HORSE
             System.out.println("Symbol: " + horse.getSymbol()); // Should be ♘
             System.out.println("Confidence: " + horse.getConfidence()); // Should be 1
             System.out.println("Distance Travelled: " + horse.getDistanceTravelled()); // Should be 0
@@ -12,13 +12,10 @@ public class HorseTest {
 
             // Move forward
             horse.moveForward();
-            horse.moveForward();
-            horse.moveForward();
-            horse.moveForward();
-            System.out.println("Distance Travelled after moving: " + horse.getDistanceTravelled()); // Should be 4
+            System.out.println("Distance Travelled after moving: " + horse.getDistanceTravelled()); // Should be 1
 
             // Set confidence
-            horse.setConfidence(-5);
+            horse.setConfidence(5);
             System.out.println("Updated Confidence: " + horse.getConfidence()); // Should be 1 and show error message
 
             // Set new symbol
