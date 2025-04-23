@@ -1,7 +1,7 @@
 public class HorseTest {
         public static void main(String[] args) {
             // Create a new horse
-            Horse horse = new Horse('♘', "KOKOMO", 1.20);
+            Horse horse = new Horse('♘', "KOKOMO", -0.0001);
 
             // Print initial state
             System.out.println("Name: " + horse.getName()); // Should be PIPPI LONGSTOCKING
@@ -14,10 +14,11 @@ public class HorseTest {
             horse.moveForward();
             horse.moveForward();
             horse.moveForward();
-            System.out.println("Distance Travelled after moving: " + horse.getDistanceTravelled()); // Should be 3
+            horse.moveForward();
+            System.out.println("Distance Travelled after moving: " + horse.getDistanceTravelled()); // Should be 4
 
             // Set confidence
-            horse.setConfidence(3.0);
+            horse.setConfidence(-5);
             System.out.println("Updated Confidence: " + horse.getConfidence()); // Should be 1 and show error message
 
             // Set new symbol
