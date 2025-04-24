@@ -88,6 +88,13 @@ public class Race
                 finished = true;
             }
 
+            //if all the three horses fall then the race is finished
+            if ( lane1Horse.hasFallen() && lane2Horse.hasFallen() && lane3Horse.hasFallen())
+            {
+                finished = true;
+                System.out.println("All horses have fallen, so the race is finished");
+            }
+
             if ( raceWonBy(lane1Horse) )
             {
                 System.out.println("And the winner is: " + lane1Horse.getName());
