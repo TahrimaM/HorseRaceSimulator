@@ -129,7 +129,7 @@ public class Race
      *
      * @param theHorse the horse to be moved
      */
-    private void moveHorse(Horse theHorse)
+    public void moveHorse(Horse theHorse)
     {
         //if the horse has fallen it cannot move,
         //so only run if it has not fallen
@@ -157,7 +157,7 @@ public class Race
      * @param theHorse The horse we are testing
      * @return true if the horse has won, false otherwise.
      */
-    private boolean raceWonBy(Horse theHorse)
+    public boolean raceWonBy(Horse theHorse)
     {
         if (theHorse.getDistanceTravelled() == raceLength) {
             return true;
@@ -170,7 +170,7 @@ public class Race
     /***
      * Print the race on the terminal
      */
-    private void printRace()
+    public void printRace()
     {
         System.out.print('\u000C');  //clear the terminal window
 
@@ -196,7 +196,7 @@ public class Race
         * to show how far the horse has run
         */
 
-    private void printLane(Horse theHorse) {
+    public void printLane(Horse theHorse) {
         // calculate how many spaces are needed before and after the horse
         int spacesBefore = theHorse.getDistanceTravelled();
         int spacesAfter = raceLength - spacesBefore;
@@ -223,6 +223,11 @@ public class Race
         System.out.print(theHorse.getName() + " (Current confidence " + theHorse.getConfidence() + ") ");
     }
 
+    public void raceStep() {
+        moveHorse(lane1Horse);
+        moveHorse(lane2Horse);
+        moveHorse(lane3Horse);
+    }
 
     /***
      * print a character a given number of times.
@@ -230,7 +235,7 @@ public class Race
      *
      * @param aChar the character to Print
      */
-    private void multiplePrint(char aChar, int times)
+    public void multiplePrint(char aChar, int times)
     {
         int i = 0;
         while (i < times)
