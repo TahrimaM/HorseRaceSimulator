@@ -213,7 +213,7 @@ public class Race
         // print horse symbol or fallen marker
         if (theHorse.hasFallen()) {
             System.out.print("❌"); // This emoji is typically 2 characters wide
-            multiplePrint(' ', spacesAfter - 1);
+            multiplePrint(' ', spacesAfter-1);
         } else {
             System.out.print(theHorse.getSymbol());
             multiplePrint(' ', spacesAfter);
@@ -221,6 +221,9 @@ public class Race
 
         // print the end of the lane
         System.out.print('|');
+
+        // prints the name of the horse at the end of the lane
+        System.out.print(theHorse.getName());
 
 
     }
