@@ -192,41 +192,37 @@ public class Race
         System.out.println();
     }
 
-    /**
-     * print a horse's lane during the race
-     * for example
-     * |           X                      |
-     * to show how far the horse has run
-     */
+        /** print a horse's lane during the race
+        * for example
+        * |          X             |
+        * to show how far the horse has run
+        */
+
     private void printLane(Horse theHorse)
     {
-        //calculate how many spaces are needed before
-        //and after the horse
+        // calculate how many spaces are needed before and after the horse
         int spacesBefore = theHorse.getDistanceTravelled();
-        int spacesAfter = raceLength - theHorse.getDistanceTravelled();
+        int spacesAfter = raceLength - spacesBefore;
 
-        //print a | for the beginning of the lane
+        // print the start of the lane
         System.out.print('|');
 
-        //print the spaces before the horse
-        multiplePrint(' ',spacesBefore);
+        // spaces before horse
+        multiplePrint(' ', spacesBefore);
 
-        //if the horse has fallen then print dead
-        //else print the horse's symbol
-        if(theHorse.hasFallen())
-        {
-            System.out.print('❌');
-        }
-        else
-        {
+        // print horse symbol or fallen marker
+        if (theHorse.hasFallen()) {
+            System.out.print("❌"); // This emoji is typically 2 characters wide
+            multiplePrint(' ', spacesAfter - 1);
+        } else {
             System.out.print(theHorse.getSymbol());
+            multiplePrint(' ', spacesAfter);
         }
 
-        //print the spaces after the horse
-        multiplePrint(' ',spacesAfter);
-
-        //print the | for the end of the track
+        // print the end of the lane
         System.out.print('|');
+
+
     }
 
 
