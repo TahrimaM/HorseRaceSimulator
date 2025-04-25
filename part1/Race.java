@@ -198,8 +198,7 @@ public class Race
         * to show how far the horse has run
         */
 
-    private void printLane(Horse theHorse)
-    {
+    private void printLane(Horse theHorse) {
         // calculate how many spaces are needed before and after the horse
         int spacesBefore = theHorse.getDistanceTravelled();
         int spacesAfter = raceLength - spacesBefore;
@@ -223,9 +222,7 @@ public class Race
         System.out.print('|');
 
         // prints the name of the horse at the end of the lane
-        System.out.print(theHorse.getName());
-
-
+        System.out.print(theHorse.getName() + " (Current confidence " + theHorse.getConfidence() + ") ");
     }
 
 
