@@ -97,21 +97,21 @@ public class Race
 
             if ( raceWonBy(lane1Horse) )
             {
-                System.out.println("And the winner is: " + lane1Horse.getName());
+                System.out.println("And the winner is: " + lane1Horse.getName() + "!");
 
             }
 
             //if any of the three horses has won the race is finished
             if ( raceWonBy(lane2Horse) )
             {
-                System.out.println("And the winner is: " + lane2Horse.getName());
+                System.out.println("And the winner is: " + lane2Horse.getName() + "!");
 
             }
 
             //if any of the three horses has won the race is finished
             if ( raceWonBy(lane3Horse) )
             {
-                System.out.println("And the winner is: " + lane3Horse.getName());
+                System.out.println("And the winner is: " + lane3Horse.getName() + "!");
 
             }
 
@@ -141,10 +141,10 @@ public class Race
                 theHorse.moveForward();
             }
 
-            //the probability that the horse will fall is very small (max is 0.1)
+            //the probability that the horse will fall is very small (max is 0.05)
             //but will also will depends exponentially on confidence
             //so if you double the confidence, the probability that it will fall is *2
-            if (Math.random() < (0.1*theHorse.getConfidence()*theHorse.getConfidence()))
+            if (Math.random() < (0.05*theHorse.getConfidence()*theHorse.getConfidence()))
             {
                 theHorse.fall();
             }
@@ -159,14 +159,12 @@ public class Race
      */
     private boolean raceWonBy(Horse theHorse)
     {
-        if (theHorse.getDistanceTravelled() == raceLength)
-        {
+        if (theHorse.getDistanceTravelled() == raceLength) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
+
     }
 
     /***
@@ -221,7 +219,7 @@ public class Race
         // print the end of the lane
         System.out.print('|');
 
-        // prints the name of the horse at the end of the lane
+        // prints the name and confidence of the horse at the end of the lane
         System.out.print(theHorse.getName() + " (Current confidence " + theHorse.getConfidence() + ") ");
     }
 
