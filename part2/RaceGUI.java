@@ -25,7 +25,9 @@ public class RaceGUI extends JPanel  {
         // Initialize horses
         horse1 = new Horse('♘', "Skibidi", 0.9);
         horse2 = new Horse('♞', "James the nword sayer", 0.9);
-        horse3 = new Horse('♕', "Shadow", 0.9);
+        horse3 = new Horse('♕', "Shadow" +
+                "" +
+                "", 0.9);
 
         // Initialize race manager
         raceManager = new Race(RACE_LENGTH);
