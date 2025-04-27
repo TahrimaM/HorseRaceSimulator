@@ -15,26 +15,29 @@ public class RaceGUI extends JPanel  {
     private JFrame frame;
     private RaceTrackPanel raceTrackPanel;
 
-    private Horse horse1;
-    private Horse horse2;
-    private Horse horse3;
+    private Horse[] horses;
 
-    private static final int RACE_LENGTH = 20; // Example race length
+    // Ask user for number of lanes and race length
+    int numberOfLanes = Integer.parseInt(JOptionPane.showInputDialog("Enter number of horses (lanes):"));
+    int raceLength = Integer.parseInt(JOptionPane.showInputDialog("Enter race length:"));
 
     public RaceGUI() {
-        // Initialize horses
-        horse1 = new Horse('♘', "Skibidi", 0.9);
-        horse2 = new Horse('♞', "James the nword sayer", 0.9);
-        horse3 = new Horse('♕', "Shadow" +
-                "" +
-                "", 0.9);
-        System.out.println(horse1.getConfidence());
+        raceManager = new Race(raceLength);
+        horses = new Horse[numberOfLanes];
+
+        for (int i = 0; i < numberOfLanes; i++) {
+            String horseName = JOptionPane.showInputDialog("Enter name for horse " + (i + 1) + ":");
+            String horseSymbol = JOptionPane.showInputDialog("Enter symbol for horse " + (i + 1) + ":");
+            double horseConfidence = Double.parseDouble(JOptionPane.showInputDialog("Enter confidence for horse " + (i + 1) + ":"));
+
+            horses[i] = new Horse(horseSymbol.charAt(0), horseName, horseConfidence);
+            raceManager.addHorse(horses[i], i + 1);
+        }
+
 
         // Initialize race manager
-        raceManager = new Race(RACE_LENGTH);
-        raceManager.addHorse(horse1, 1);
-        raceManager.addHorse(horse2, 2);
-        raceManager.addHorse(horse3, 3);
+
+
 
 
 
@@ -89,21 +92,22 @@ public class RaceGUI extends JPanel  {
 
             // Draw lanes
             g.setColor(Color.WHITE);
-            for (int i = 1; i <= 3; i++) {
+            for (int i = 1; i <= numberOfLanes; i++) {
                 g.drawLine(0, i * 100, getWidth(), i * 100);
             }
 
             // Draw horses (as rectangles or emojis)
-            drawHorse(g, horse1, 1);
-            drawHorse(g, horse2, 2);
-            drawHorse(g, horse3, 3);
+            for (int i = 0; i < horses.length; i++) {
+                drawHorse(g, horses[i], i + 1);
+            }
         }
 
         private void drawHorse(Graphics g, Horse horse, int lane) {
-            int x = horse.getDistanceTravelled() * 30; // Adjust scale
-            int y = lane * 100 - 50;
+            int x = horse.getDistanceTravelled() * 30; // Scale horizontal position
+            int y = lane * 100 - 40; // Y offset for vertical spacing
 
             g.setColor(Color.BLACK);
+            g.setFont(new Font("SansSerif", Font.BOLD, 18));
             g.drawString(horse.getSymbol() + " " + horse.getName(), x, y);
         }
     }
@@ -147,37 +151,25 @@ public class RaceGUI extends JPanel  {
         raceTrackPanel.repaint(); // <-- this is key
     }
 
-    private void drawHorse(Graphics g, Horse horse, int lane) {
-        int x = horse.getDistanceTravelled() * 30; // Scale horizontal position
-        int y = lane * 100 - 40; // Y offset for vertical spacing
-
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("SansSerif", Font.BOLD, 18));
-        g.drawString(horse.getSymbol() + " " + horse.getName(), x, y);
-    }
-
 
     private boolean isRaceFinished() {
-        // A simplified version of the original check.
-        return raceManager.raceWonBy(horse1) || raceManager.raceWonBy(horse2) || raceManager.raceWonBy(horse3);
+        for (Horse horse : horses) {
+            if (raceManager.raceWonBy(horse)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void displayWinner() {
-        String winner = "";
-        if (raceManager.raceWonBy(horse1)) {
-            winner = horse1.getName();
-        } else if (raceManager.raceWonBy(horse2)) {
-            winner = horse2.getName();
-        } else if (raceManager.raceWonBy(horse3)) {
-            winner = horse3.getName();
+        for (Horse horse : horses) {
+            if (raceManager.raceWonBy(horse)) {
+                JOptionPane.showMessageDialog(frame, "The winner is " + horse.getName() + "!");
+                return;
+            }
         }
+        JOptionPane.showMessageDialog(frame, "All horses have fallen!");
 
-        if (!winner.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "The winner is " + winner + "!");
-        } else {
-            JOptionPane.showMessageDialog(frame, "The horses have all fallen.");
-            isRaceFinished();
-        }
     }
 
     public static void main(String[] args) {
