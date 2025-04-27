@@ -28,6 +28,7 @@ public class RaceGUI extends JPanel  {
         horse3 = new Horse('♕', "Shadow" +
                 "" +
                 "", 0.9);
+        System.out.println(horse1.getConfidence());
 
         // Initialize race manager
         raceManager = new Race(RACE_LENGTH);
