@@ -10,6 +10,10 @@ public class Race {
         lanes = new Horse[numberOfLanes];
     }
 
+    public int getRaceLength() {
+        return raceLength;
+    }
+
     public void addHorse(Horse theHorse, int laneNumber) {
         if (laneNumber >= 1 && laneNumber <= lanes.length) {
             lanes[laneNumber - 1] = theHorse;
