@@ -43,7 +43,7 @@ public class RaceGUI extends JPanel {
 
             );
 
-            String[] colourOptions = {"Black", "White", "Brown", "Grey", "Chestnut"};
+            String[] colourOptions = {"Black", "White", "Brown", "Pink", "Chestnut"};
             String colourChoice = (String) JOptionPane.showInputDialog(null,
                     "Choose coat colour for horse " + (i + 1) + ":",
                     "Coat Colour",
@@ -52,7 +52,7 @@ public class RaceGUI extends JPanel {
 
             Color horseCoatColour = mapColor(colourChoice);
 
-            String[] symbolOptions = {"🐎", "🐴", "🏇", "🦄"};
+            String[] symbolOptions = {"♞", "⚡", "☀", "❄"};
             String horseSymbol = (String) JOptionPane.showInputDialog(
                     null,
                     "Choose symbol (emoji) for horse " + (i + 1) + ":",
@@ -110,19 +110,37 @@ public class RaceGUI extends JPanel {
                 // Show weather impact pop-up
                 String message = "";
                 if (selectedWeather.equals("Dry")) {
-                    message = "The weather is dry, so the horses will be able to move freely.";
+                    message = "The weather is dry, so the horses will be able to move freely, especially for Americans.";
                 }
                 else if (selectedWeather.equals("Muddy")){
-                    message = "The weather is muddy, so the horses will fall more easily and are less confident.";
+                    message = "The weather is wet, so the horses will fall more easily and are less confident, except for Bengalis.";
                 }
                 else if (selectedWeather.equals("Icy")) {
-                    message = "The weather is icy, so the horses will slip more easily and are very unconfident.";
+                    message = "The weather is icy, so the horses will slip more easily and are very unconfident, except for Antarticans.";
                 }
                 JOptionPane.showMessageDialog(frame,
                         message,
                         "Weather Selected",
                         JOptionPane.INFORMATION_MESSAGE);
 
+                // Adjust confidence boost by breed
+                for (int i = 0; i < horses.length; i++) {
+                    String breed = horseBreeds[i];
+                    Horse horse = horses[i];
+
+                    double currentConfidence = horse.getConfidence();
+
+                    if (selectedWeather.equals("Muddy") && breed.equals("Bengali")) {
+                        double newConfidence = Math.min(currentConfidence + 0.1, 1.0); // Max 1.0
+                        horse.setConfidence(newConfidence);
+                    } else if (selectedWeather.equals("Dry") && breed.equals("American")) {
+                        double newConfidence = Math.min(currentConfidence + 0.1, 1.0);
+                        horse.setConfidence(newConfidence);
+                    } else if (selectedWeather.equals("Icy") && breed.equals("Antartican")) {
+                        double newConfidence = Math.min(currentConfidence + 0.1, 1.0);
+                        horse.setConfidence(newConfidence);
+                    }
+                }
                 startRace();
             }
         });
@@ -162,7 +180,17 @@ public class RaceGUI extends JPanel {
             int y = laneY - 20; // slightly above the lane line
 
             g.setColor(horseCoatColours[lane-1]);
-            g.setFont(new Font("SansSerif", Font.BOLD, 18));
+            String os = System.getProperty("os.name").toLowerCase();
+            Font emojiFont;
+            if (os.contains("win")) {
+                emojiFont = new Font("Segoe UI Emoji", Font.PLAIN, 24);
+            } else if (os.contains("mac")) {
+                emojiFont = new Font("Apple Color Emoji", Font.PLAIN, 24);
+            } else {
+                emojiFont = new Font("Noto Color Emoji", Font.PLAIN, 24);
+            }
+
+            g.setFont(emojiFont);
             g.drawString(String.valueOf(horse.getSymbol()), x, y);
         }
     }
@@ -175,8 +203,8 @@ public class RaceGUI extends JPanel {
                 return Color.WHITE;
             case "Brown":
                 return new Color(86, 40, 6); // a nice brown
-            case "Grey":
-                return Color.GRAY;
+            case "Pink":
+                return Color.PINK;
             case "Chestnut":
                 return new Color(182, 90, 20); // chestnut color
             default:
