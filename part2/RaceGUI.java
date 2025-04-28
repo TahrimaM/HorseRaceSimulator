@@ -12,6 +12,8 @@ public class RaceGUI extends JPanel {
     private RaceTrackPanel raceTrackPanel;
     private Horse[] horses;
 
+    private JComboBox<String> weatherComboBox;
+
     public RaceGUI() {
         // Ask user first
         int numberOfLanes = Integer.parseInt(JOptionPane.showInputDialog("Enter number of horses (lanes):"));
@@ -46,21 +48,28 @@ public class RaceGUI extends JPanel {
         raceTrackPanel = new RaceTrackPanel();
         frame.add(raceTrackPanel, BorderLayout.CENTER);
 
+        String[] weatherOptions = {"Sunny", "Muddy"};
+        weatherComboBox = new JComboBox<>(weatherOptions);
+        weatherComboBox.setSelectedIndex(0); // Default to "Sunny"
+
+        JPanel weatherPanel = new JPanel();
+        weatherPanel.add(new JLabel("Select Weather:"));
+        weatherPanel.add(weatherComboBox);
+
+        frame.add(weatherPanel, BorderLayout.NORTH);
 
         // Start button
         startButton = new JButton("Start Race");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Set the selected weather in the raceManager before starting the race
+                String selectedWeather = (String) weatherComboBox.getSelectedItem();
+                raceManager.setWeather(selectedWeather);
                 startRace();
             }
         });
         frame.add(startButton, BorderLayout.SOUTH);
-
-        JPanel instructionPanel = new JPanel();
-        instructionPanel.add(new JLabel("Click 'Start Race' to begin!"));
-        instructionPanel.setBackground(new Color(210, 113, 113));
-        frame.add(instructionPanel, BorderLayout.NORTH);
 
         frame.setSize(1000, 600);
         frame.setVisible(true);

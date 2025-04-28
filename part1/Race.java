@@ -4,14 +4,25 @@ import java.util.concurrent.TimeUnit;
 public class Race {
     private int raceLength;
     private Horse[] lanes;
+    private String weather;
 
     public Race(int distance, int numberOfLanes) {
         raceLength = distance;
         lanes = new Horse[numberOfLanes];
+        this.weather = "Dry";
     }
 
     public int getRaceLength() {
         return raceLength;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+        System.out.println("Weather set to: " + weather);
+    }
+
+    public String getWeather() {
+        return weather;
     }
 
     public void addHorse(Horse theHorse, int laneNumber) {
@@ -51,9 +62,17 @@ public class Race {
             if (Math.random() < theHorse.getConfidence()) {
                 theHorse.moveForward();
             }
-            if (Math.random() < (0.05 * theHorse.getConfidence() * theHorse.getConfidence())) {
-                theHorse.fall();
+            if (weather.equals("Dry")) {
+                if (Math.random() < (0.05 * theHorse.getConfidence() * theHorse.getConfidence())) {
+                    theHorse.fall();
+                }
             }
+            else {
+                if (Math.random() < (0.1 * theHorse.getConfidence() * theHorse.getConfidence())) {
+                    theHorse.fall();
+                }
+            }
+
         }
     }
 
