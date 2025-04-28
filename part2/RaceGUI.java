@@ -14,7 +14,6 @@ public class RaceGUI extends JPanel {
 
     private JComboBox<String> weatherComboBox;
 
-    // 3 15 Q Q 0.4 W W 0.6 E E 0.7 sunny vs muddy
 
     public RaceGUI() {
         // Ask user first
@@ -50,7 +49,7 @@ public class RaceGUI extends JPanel {
         raceTrackPanel = new RaceTrackPanel();
         frame.add(raceTrackPanel, BorderLayout.CENTER);
 
-        String[] weatherOptions = {"Dry", "Muddy"};
+        String[] weatherOptions = {"Dry", "Muddy", "Icy"};
         weatherComboBox = new JComboBox<>(weatherOptions);
         weatherComboBox.setSelectedIndex(0); // Default to "Dry"
 
@@ -68,6 +67,23 @@ public class RaceGUI extends JPanel {
                 // Set the selected weather in the raceManager before starting the race
                 String selectedWeather = (String) weatherComboBox.getSelectedItem();
                 raceManager.setWeather(selectedWeather);
+
+                // Show weather impact pop-up
+                String message = "";
+                if (selectedWeather.equals("Dry")) {
+                    message = "The weather is dry, so the horses will be able to move freely.";
+                }
+                else if (selectedWeather.equals("Muddy")){
+                    message = "The weather is muddy, so the horses will fall more easily and are less confident.";
+                }
+                else if (selectedWeather.equals("Icy")) {
+                    message = "The weather is icy, so the horses will slip more easily and are very unconfident.";
+                }
+                JOptionPane.showMessageDialog(frame,
+                        message,
+                        "Weather Selected",
+                        JOptionPane.INFORMATION_MESSAGE);
+
                 startRace();
             }
         });
