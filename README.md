@@ -9,13 +9,12 @@ Part 2: The graphical version of the simulator, which uses a GUI interface.
 The program simulates a race between three horses, with each horse having its own lane and moving based on its "confidence" rating.
 
 ## Table of Contents
-1. [Project Setup Instructions](#project-setup-instructions)
+1. [Project Setup/Usage Instructions](#project-setup-instructions)
 2. [Dependencies & Installation](#dependencies--installation)
-3. [Usage Guidelines](#usage-guidelines)
 
 ---
 
-## Project Setup Instructions
+## Project Setup/Usage Instructions
 
 To run the project locally on your machine, follow these instructions:
 
@@ -63,6 +62,11 @@ To run the project locally on your machine, follow these instructions:
    
    - **Java 8+** installed on your system.
      - You can download it from [Oracle's website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or use a package manager (e.g., `apt`, `brew`).
+     - You can check if you have the correct version by writing in your terminal:
+    
+       java -version
+
+        If not installed, use the website above to install it.
      
    - A **command-line interface** (CLI) to run Java programs, such as Terminal (macOS/Linux) or Command Prompt/PowerShell (Windows).
    
@@ -70,6 +74,3 @@ To run the project locally on your machine, follow these instructions:
    
 
 
-
-   
-   
