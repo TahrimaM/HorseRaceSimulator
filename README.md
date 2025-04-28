@@ -27,46 +27,48 @@ To run the project locally on your machine, follow these instructions:
 
 2. **Navigate to the project directory:**
 
-   `cd HorseRaceSimulator`
+      `cd HorseRaceSimulator`
 
-5.  **Compile the code**
+5. **Compile the code**
 
    
-   `javac Part1/*.java Part2/*.java`
+      `javac Part1/*.java Part2/*.java`
 
-   This will compile all the necessary Java files in the Part1 and Part2 directories.
+      This will compile all the necessary Java files in the Part1 and Part2 directories.
 
 4. **Running the simulations**
-   To run the **Textual** version
+      To run the **Textual** version
    Make sure you have the necessary files from the above commands.
    From the terminal, run the startRace method in the Part1 folder:
 
-   java Part1.RaceTextual
+      `java Part1.RaceTextual`
 
    To run the **Graphical** version
-   Make sure you have the necessary files from the above commands.
-   From the terminal, run the startRaceGUI method in the Part2 folder:
+      Make sure you have the necessary files from the above commands.
+      From the terminal, run the startRaceGUI method in the Part2 folder:
 
-   java Part2.RaceGUI
+     `java Part2.RaceGUI`
 
 5. **How to Invoke Methods**
-Textual version: The race is started by calling the startRace method, which is just the Main method located in the Part1 folder as startRace.
-
-Graphical version: The race is started by calling the startRace method located in the Part2 folder, inside the RaceTextual.java file. 
-
-Both versions are self-contained and do not require additional setup once compiled, inside RaceGUI.java file.
+   Textual version: The race is started by calling the startRace method, which is just the Main method located in the Part1 folder as startRace.
+   
+   Graphical version: The race is started by calling the startRace method located in the Part2 folder, inside the RaceTextual.java file. 
+   
+   Both versions are self-contained and do not require additional setup once compiled, inside RaceGUI.java file.
 
 
 ## Dependencies & Installation
-Before running the simulator, make sure you have the following:
+   Before running the simulator, make sure you have the following:
+   
+   
+   - **Java 8+** installed on your system.
+     - You can download it from [Oracle's website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or use a package manager (e.g., `apt`, `brew`).
+     
+   - A **command-line interface** (CLI) to run Java programs, such as Terminal (macOS/Linux) or Command Prompt/PowerShell (Windows).
+   
+   My code is IDE-agnostic, meaning it can run in any IDE and the terminal. 
+   
 
-
-- **Java 8+** installed on your system.
-  - You can download it from [Oracle's website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or use a package manager (e.g., `apt`, `brew`).
-  
-- A **command-line interface** (CLI) to run Java programs, such as Terminal (macOS/Linux) or Command Prompt/PowerShell (Windows).
-
-My code is IDE-agnostic, meaning it can run in any IDE. 
 
 
    
