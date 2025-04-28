@@ -74,7 +74,7 @@ To run the project locally on your machine, follow these instructions:
    My code is IDE-agnostic, meaning it can run in any IDE and the terminal. 
    
 ## File Summary
-   
+   ```
    ├── Part1/
    │   ├── RaceTextual.java      # Manages the logic for the textual race simulation.
    │   ├── Horse.java            # Represents individual horses, their attributes, and behaviour.
