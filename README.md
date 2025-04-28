@@ -75,18 +75,18 @@ To run the project locally on your machine, follow these instructions:
    
 ## File Summary
    
-   ├── **Part1/**
+   ├── Part1/
    │   ├── RaceTextual.java      # Manages the logic for the textual race simulation.
    │   ├── Horse.java            # Represents individual horses, their attributes, and behaviour.
    │   ├── Race.java             # Handles the race logic, including race progress and determining winners.
    │   └── startRace            # Main method to start the textual race simulation.
    │
-   ├── **Part2/**
+   ├── Part2/
    │   ├── RaceGUI.java          # Manages the GUI for the graphical race simulation.
    │   ├── RaceTrackPanel.java   # Helper class for drawing the race track and horses.
    │   ├── Horse.java            # Represents individual horses, similar to Part 1, but used in the GUI.
    │   ├── Race.java             # The race logic for the graphical version of the race.
    │   └── startRaceGUI          # Main method to initialize and start the graphical race simulation.
    │
-   ├── **README.md**
+   ├── README.md
 
