@@ -188,4 +188,27 @@ public class RaceTextual {
             System.out.print(aChar);
         }
     }
+
+    /**
+     * Main method to start the race
+     */
+    public static void main(String[] args) {
+        // Set up the race distance (for example, 50 meters)
+        int raceDistance = 50;
+
+        // Create a RaceTextual object with the race distance
+        RaceTextual race = new RaceTextual(raceDistance);
+
+        // Create horses and add them to the race
+        Horse horse1 = new Horse('A', "Thunder", 0.8);
+        Horse horse2 = new Horse('B', "Lightning", 0.7);
+        Horse horse3 = new Horse('C', "Storm", 0.75);
+
+        race.addHorse(horse1, 1);
+        race.addHorse(horse2, 2);
+        race.addHorse(horse3, 3);
+
+        // Start the race
+        race.startRace();
+    }
 }
