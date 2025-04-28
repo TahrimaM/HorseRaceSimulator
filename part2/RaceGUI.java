@@ -141,7 +141,7 @@ public class RaceGUI extends JPanel {
                         horse.setConfidence(newConfidence);
                     }
                 }
-                startRace();
+                startRaceGUI();
             }
         });
         frame.add(startButton, BorderLayout.SOUTH);
@@ -222,7 +222,7 @@ public class RaceGUI extends JPanel {
         }
     }
 
-    private void startRace() {
+    private void startRaceGUI() {
         startButton.setEnabled(false); // Disable the button during the race
 
 
