@@ -67,8 +67,14 @@ public class Race {
                     theHorse.fall();
                 }
             }
-            else {
+            else if (weather.equals("Muddy")){
                 if (Math.random() < (0.1 * theHorse.getConfidence() * theHorse.getConfidence())) {
+                    theHorse.fall();
+                }
+            }
+
+            else if (weather.equals("icy")) {
+                if (Math.random() < (0.5 * theHorse.getConfidence() * theHorse.getConfidence())) {
                     theHorse.fall();
                 }
             }
