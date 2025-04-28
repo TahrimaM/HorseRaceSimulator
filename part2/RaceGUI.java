@@ -3,26 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * A three-horse race GUI, each horse running in its own lane
- * for a given distance
- */
-public class RaceGUI extends JPanel  {
+public class RaceGUI extends JPanel {
 
     private Race raceManager;
     private JButton startButton;
-    private JTextArea raceDisplay; // To show the race progress
+    private JTextArea raceDisplay;
     private JFrame frame;
     private RaceTrackPanel raceTrackPanel;
-
     private Horse[] horses;
 
-    // Ask user for number of lanes and race length
-    int numberOfLanes = Integer.parseInt(JOptionPane.showInputDialog("Enter number of horses (lanes):"));
-    int raceLength = Integer.parseInt(JOptionPane.showInputDialog("Enter race length:"));
-
     public RaceGUI() {
-        raceManager = new Race(raceLength);
+        // Ask user first
+        int numberOfLanes = Integer.parseInt(JOptionPane.showInputDialog("Enter number of horses (lanes):"));
+        int raceLength = Integer.parseInt(JOptionPane.showInputDialog("Enter race length:"));
+
+        // Create horses array
         horses = new Horse[numberOfLanes];
 
         for (int i = 0; i < numberOfLanes; i++) {
@@ -31,34 +26,33 @@ public class RaceGUI extends JPanel  {
             double horseConfidence = Double.parseDouble(JOptionPane.showInputDialog("Enter confidence for horse " + (i + 1) + ":"));
 
             horses[i] = new Horse(horseSymbol.charAt(0), horseName, horseConfidence);
+        }
+
+        // Now create the raceManager AFTER we know number of horses
+        raceManager = new Race(raceLength, numberOfLanes);
+
+        // Add horses to the race
+        for (int i = 0; i < numberOfLanes; i++) {
             raceManager.addHorse(horses[i], i + 1);
         }
 
-
-        // Initialize race manager
-
-
-
-
-
-        // Set up the frame
+        // Setup frame
         frame = new JFrame("My Little Pony");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        // Make it aesthetic
         frame.setBackground(new Color(60, 179, 113));
 
         raceTrackPanel = new RaceTrackPanel();
         frame.add(raceTrackPanel, BorderLayout.CENTER);
 
-        // Set up the race display area
-        raceDisplay = new JTextArea(10, 40); // Rows, Columns
+        // Text display for printed race track
+        raceDisplay = new JTextArea(10, 40);
         raceDisplay.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(raceDisplay); // Add scrollbars
-        frame.add(scrollPane, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(raceDisplay);
+        frame.add(scrollPane, BorderLayout.EAST);
 
-        // Set up the start button
+        // Start button
         startButton = new JButton("Start Race");
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -68,43 +62,37 @@ public class RaceGUI extends JPanel  {
         });
         frame.add(startButton, BorderLayout.SOUTH);
 
-        // Set up the panel for instructions
         JPanel instructionPanel = new JPanel();
         instructionPanel.add(new JLabel("Click 'Start Race' to begin!"));
-
-        instructionPanel.setBackground(new Color(210, 113, 113)); // Light baby pink
+        instructionPanel.setBackground(new Color(210, 113, 113));
         frame.add(instructionPanel, BorderLayout.NORTH);
 
-        // Set gui width and height
-        frame.setSize(800, 400);
+        frame.setSize(1000, 600);
         frame.setVisible(true);
-        frame.setLocationRelativeTo(null); // Center the window
+        frame.setLocationRelativeTo(null);
     }
-
 
     private class RaceTrackPanel extends JPanel {
         @Override
-
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+            setBackground(new Color(60, 179, 113)); // green background
 
-            setBackground(new Color(60, 179, 113)); // Green field
-
-            // Draw lanes
             g.setColor(Color.WHITE);
-            for (int i = 1; i <= numberOfLanes; i++) {
-                g.drawLine(0, i * 100, getWidth(), i * 100);
+            for (int i = 1; i <= horses.length; i++) {
+                int laneY = i * getHeight() / (horses.length + 1);
+                g.drawLine(0, laneY, getWidth(), laneY);
             }
 
-            // Draw horses (as rectangles or emojis)
             for (int i = 0; i < horses.length; i++) {
                 drawHorse(g, horses[i], i + 1);
             }
         }
 
         private void drawHorse(Graphics g, Horse horse, int lane) {
-            int x = horse.getDistanceTravelled() * 30; // Scale horizontal position
-            int y = lane * 100 - 40; // Y offset for vertical spacing
+            int x = horse.getDistanceTravelled() * 30; // scaling
+            int laneY = lane * getHeight() / (horses.length + 1);
+            int y = laneY - 20;
 
             g.setColor(Color.BLACK);
             g.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -113,16 +101,15 @@ public class RaceGUI extends JPanel  {
     }
 
     private void startRace() {
-        startButton.setEnabled(false); // Disable the button during the race
-        raceDisplay.setText(""); // Clear any previous race display
+        startButton.setEnabled(false);
+        raceDisplay.setText("");
 
-        // Use a Swing Timer for the race animation
-        final Timer timer = new Timer(100, new ActionListener() {
+        Timer timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!isRaceFinished()) {
-                    raceManager.raceStep();      // ⬅ one move per timer tick
-                    updateDisplay();             // update visuals
+                    raceManager.raceStep();
+                    updateDisplay();
                 } else {
                     ((Timer) e.getSource()).stop();
                     startButton.setEnabled(true);
@@ -147,10 +134,8 @@ public class RaceGUI extends JPanel  {
         sb.append(output);
 
         raceDisplay.setText(sb.toString());
-
-        raceTrackPanel.repaint(); // <-- this is key
+        raceTrackPanel.repaint();
     }
-
 
     private boolean isRaceFinished() {
         for (Horse horse : horses) {
@@ -169,16 +154,10 @@ public class RaceGUI extends JPanel  {
             }
         }
         JOptionPane.showMessageDialog(frame, "All horses have fallen!");
-
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new RaceGUI();
-            }
-        });
+        SwingUtilities.invokeLater(() -> new RaceGUI());
     }
 }
 
