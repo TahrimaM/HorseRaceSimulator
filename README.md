@@ -26,9 +26,10 @@ To run the project locally on your machine, follow these instructions:
    git clone https://github.com/yourusername/HorseRaceSimulator.git
 
 2. **Navigate to the project directory:**
-  cd HorseRaceSimulator
 
-3.  **Compile the code**
+   `cd HorseRaceSimulator`
+
+5.  **Compile the code**
 
    
    `javac Part1/*.java Part2/*.java`
