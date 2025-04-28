@@ -30,7 +30,7 @@ To run the project locally on your machine, follow these instructions:
 
 3.  **Compile the code**
 
-   ```bash
+   `
    javac Part1/*.java Part2/*.java
 
    This will compile all the necessary Java files in the Part1 and Part2 directories.
