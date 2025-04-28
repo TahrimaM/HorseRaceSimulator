@@ -11,6 +11,7 @@ The program simulates a race between three horses, with each horse having its ow
 ## Table of Contents
 1. [Project Setup/Usage Instructions](#project-setup-instructions)
 2. [Dependencies & Installation](#dependencies--installation)
+3. [File Summary](#file-summary)
 
 ---
 
@@ -64,7 +65,7 @@ To run the project locally on your machine, follow these instructions:
      - You can download it from [Oracle's website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or use a package manager (e.g., `apt`, `brew`).
      - You can check if you have the correct version by writing in your terminal:
     
-       java -version
+       `java -version`
 
         If not installed, use the website above to install it.
      
@@ -72,5 +73,20 @@ To run the project locally on your machine, follow these instructions:
    
    My code is IDE-agnostic, meaning it can run in any IDE and the terminal. 
    
-
+## File Summary
+   
+   ├── **Part1/**
+   │   ├── RaceTextual.java      # Manages the logic for the textual race simulation.
+   │   ├── Horse.java            # Represents individual horses, their attributes, and behaviour.
+   │   ├── Race.java             # Handles the race logic, including race progress and determining winners.
+   │   └── startRace            # Main method to start the textual race simulation.
+   │
+   ├── **Part2/**
+   │   ├── RaceGUI.java          # Manages the GUI for the graphical race simulation.
+   │   ├── RaceTrackPanel.java   # Helper class for drawing the race track and horses.
+   │   ├── Horse.java            # Represents individual horses, similar to Part 1, but used in the GUI.
+   │   ├── Race.java             # The race logic for the graphical version of the race.
+   │   └── startRaceGUI          # Main method to initialize and start the graphical race simulation.
+   │
+   ├── **README.md**
 
