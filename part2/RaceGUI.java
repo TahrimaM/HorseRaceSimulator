@@ -72,7 +72,10 @@ public class RaceGUI extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            setBackground(new Color(60, 179, 113)); // Green field
+            // Set the green background to cover only the track length
+            int trackLength = raceManager.getRaceLength(); // Get race length from the race manager
+            g.setColor(new Color(60, 179, 113)); // Green color for the race track background
+            g.fillRect(0, 0, trackLength * 30, getHeight()); // Adjust width based on race length
 
             // Draw lanes based on number of horses
             g.setColor(Color.WHITE);
@@ -94,7 +97,7 @@ public class RaceGUI extends JPanel {
 
             g.setColor(Color.BLACK);
             g.setFont(new Font("SansSerif", Font.BOLD, 18));
-            g.drawString(horse.getSymbol() + " " + horse.getName(), x, y);
+            g.drawString(String.valueOf(horse.getSymbol()), x, y);
         }
     }
 
@@ -118,23 +121,6 @@ public class RaceGUI extends JPanel {
         });
         timer.start();
     }
-
-    /** private void updateDisplay() {
-        StringBuilder sb = new StringBuilder();
-
-        java.io.PrintStream originalOut = System.out;
-        java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
-        System.setOut(new java.io.PrintStream(baos));
-
-        System.setOut(originalOut);
-        String output = baos.toString();
-        sb.append(output);
-
-        raceDisplay.setText(sb.toString());
-
-        raceTrackPanel.repaint();
-    }
-     */
 
     private boolean isRaceFinished() {
         for (Horse horse : horses) {
