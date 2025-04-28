@@ -190,7 +190,17 @@ public class RaceGUI extends JPanel {
                 emojiFont = new Font("Noto Color Emoji", Font.PLAIN, 24);
             }
 
+            // Use a more robust fallback font if needed
             g.setFont(emojiFont);
+            String horseSymbol = String.valueOf(horse.getSymbol());
+
+            // If the ♞ symbol is not rendering correctly, try switching the font to one that supports it better
+            if (horseSymbol.equals("♞")) {
+                Font fallbackFont = new Font("Segoe UI Symbol", Font.PLAIN, 24);  // More robust font for symbols
+                g.setFont(fallbackFont);
+            }
+
+
             g.drawString(String.valueOf(horse.getSymbol()), x, y);
         }
     }
