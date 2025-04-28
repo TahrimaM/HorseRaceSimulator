@@ -14,6 +14,8 @@ public class RaceGUI extends JPanel {
 
     private JComboBox<String> weatherComboBox;
 
+    // 3 15 Q Q 0.4 W W 0.6 E E 0.7 sunny vs muddy
+
     public RaceGUI() {
         // Ask user first
         int numberOfLanes = Integer.parseInt(JOptionPane.showInputDialog("Enter number of horses (lanes):"));
@@ -48,9 +50,9 @@ public class RaceGUI extends JPanel {
         raceTrackPanel = new RaceTrackPanel();
         frame.add(raceTrackPanel, BorderLayout.CENTER);
 
-        String[] weatherOptions = {"Sunny", "Muddy"};
+        String[] weatherOptions = {"Dry", "Muddy"};
         weatherComboBox = new JComboBox<>(weatherOptions);
-        weatherComboBox.setSelectedIndex(0); // Default to "Sunny"
+        weatherComboBox.setSelectedIndex(0); // Default to "Dry"
 
         JPanel weatherPanel = new JPanel();
         weatherPanel.add(new JLabel("Select Weather:"));
@@ -132,12 +134,7 @@ public class RaceGUI extends JPanel {
     }
 
     private boolean isRaceFinished() {
-        for (Horse horse : horses) {
-            if (raceManager.raceWonBy(horse)) {
-                return true;
-            }
-        }
-        return false;
+        return raceManager.isRaceFinished();
     }
 
     private void displayWinner() {
@@ -147,7 +144,8 @@ public class RaceGUI extends JPanel {
                 return;
             }
         }
-        JOptionPane.showMessageDialog(frame, "All horses have fallen!");
+        JOptionPane.showMessageDialog(frame, "All horses has fallen!");
+
     }
 
     public static void main(String[] args) {
