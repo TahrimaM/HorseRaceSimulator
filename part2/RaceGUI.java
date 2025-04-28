@@ -30,7 +30,18 @@ public class RaceGUI extends JPanel {
 
         for (int i = 0; i < numberOfLanes; i++) {
             String horseName = JOptionPane.showInputDialog("Enter name for horse " + (i + 1) + ":");
-            String horseBreed = JOptionPane.showInputDialog("Enter breed for horse " + (i + 1) + ":");
+            String[] breedOptions = {"American", "Bengali", "Antartican"};
+            String horseBreed = (String) JOptionPane.showInputDialog(null,
+                    "Choose breed option for horse " + (i + 1) + ":",
+                    "Breed",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    breedOptions,
+                    breedOptions[0]
+
+
+
+            );
 
             String[] colourOptions = {"Black", "White", "Brown", "Grey", "Chestnut"};
             String colourChoice = (String) JOptionPane.showInputDialog(null,
@@ -41,7 +52,17 @@ public class RaceGUI extends JPanel {
 
             Color horseCoatColour = mapColor(colourChoice);
 
-            String horseSymbol = JOptionPane.showInputDialog("Enter symbol (emoji or letter) for horse " + (i + 1) + ":");
+            String[] symbolOptions = {"🐎", "🐴", "🏇", "🦄"};
+            String horseSymbol = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Choose symbol (emoji) for horse " + (i + 1) + ":",
+                    "Horse Symbol",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    symbolOptions,
+                    symbolOptions[0]
+            );
+
             double horseConfidence = Double.parseDouble(JOptionPane.showInputDialog("Enter confidence for horse " + (i + 1) + ":"));
 
             horses[i] = new Horse(horseSymbol.charAt(0), horseName, horseConfidence);
