@@ -164,7 +164,7 @@ public class RaceGUI extends JPanel {
             // Draw lanes based on number of horses
             g.setColor(Color.WHITE);
             for (int i = 0; i < horses.length; i++) {
-                int laneY = (i + 1) * getHeight() / (horses.length + 1); // evenly space out
+                int laneY = (i + 1) * getHeight() / (horses.length );
                 g.drawLine(0, laneY, getWidth(), laneY);
             }
 
