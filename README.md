@@ -1,4 +1,5 @@
 # Horse Race Simulator
+# Made by Tahrima Akther Milky 230332519
 
 This project is a simulation of a horse race, with both a textual and graphical version. It consists of two main parts:
 
